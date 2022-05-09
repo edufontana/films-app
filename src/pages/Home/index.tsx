@@ -11,11 +11,16 @@ import {
   FlatView,
   Image,
   ViewMovies,
+  TextFilm,
 } from './styles';
 
 export function Home() {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    handleLoadButton();
+  }, []);
 
   const handleLoadButton = async () => {
     setLoading(true);
@@ -46,8 +51,8 @@ export function Home() {
             data={movies}
             renderItem={({item}) => (
               <ViewMovies>
-                <Text>{item.titulo}</Text>
-                <Image source={{uri: item.avatar}} />
+                <TextFilm>{item.titulo}</TextFilm>
+                <Image source={{uri: item.avatar}} resizeMode={'contain'} />
               </ViewMovies>
             )}
             keyExtractor={item => item.titulo}
